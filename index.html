@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kit EstéticIA · Las apps de la consulta de medicina estética</title>
+<meta name="description" content="Kit EstéticIA: ocho apps para cada momento de la consulta de medicina estética, de la primera visita a la revisión. Máster de Medicina Estética Integral y Antienvejecimiento, UMH.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --piel:#F2D7C9;--piel2:#E9C3B0;--tinta:#1D1A2E;--gris:#5E5470;--rotu:#5B2A86;--rotu2:#7B45AD;
+  --urg:#B3203A;--sinia:#0B7268;--papel:#FFFFFF;--suave:#F7F4F8;--linea:#E3DCE8;
+  --disp:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;--txt:"IBM Plex Sans",ui-sans-serif,system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;font-family:var(--txt);font-size:17px;line-height:1.6;color:var(--tinta);background:var(--papel);padding-bottom:env(safe-area-inset-bottom,0px)}
+a{color:var(--rotu)}
+:focus-visible{outline:3px solid var(--rotu);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+
+/* barra */
+.top{position:sticky;top:0;z-index:20;background:rgba(242,215,201,.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(91,42,134,.15);padding-top:env(safe-area-inset-top,0px)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:16px}
+.marca{font-family:var(--disp);font-weight:800;font-size:20px;letter-spacing:-.01em;text-decoration:none;color:var(--tinta);display:flex;align-items:center;gap:10px}
+.marca svg{width:28px;height:28px}
+.langs{display:flex;gap:4px}
+.langs button{font:600 14px var(--txt);border:1px solid transparent;background:none;color:var(--tinta);padding:6px 10px;border-radius:20px;cursor:pointer;min-height:36px}
+.langs button[aria-pressed=true]{background:var(--tinta);color:#fff}
+
+/* portada */
+.hero{background:var(--piel);overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:24px;align-items:center;padding-top:56px;padding-bottom:40px}
+.hero h1{font-family:var(--disp);font-weight:800;font-size:clamp(40px,6.4vw,82px);line-height:.98;letter-spacing:-.035em;margin:0 0 22px;max-width:12ch}
+.hero .sub{font-size:clamp(17px,1.6vw,20px);max-width:36ch;margin:0 0 28px;color:#3A3048}
+.hero .meta{font-size:14px;color:#4A3F5A;margin:18px 0 0;max-width:46ch}
+.cta{display:inline-flex;align-items:center;gap:10px;background:var(--rotu);color:#fff;text-decoration:none;font-weight:600;padding:14px 22px;border-radius:999px;min-height:48px}
+.cta:hover{background:#4A2070}
+.cara{width:100%;max-width:470px;justify-self:center;display:block}
+.cara .traz{fill:none;stroke:var(--rotu);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.cara .fina{stroke-width:1.6;stroke-dasharray:6 7}
+.cara .pto{fill:var(--rotu)}
+.cara .riesgo{fill:url(#rayado);stroke:var(--urg);stroke-width:1.6}
+.cara .contorno{fill:none;stroke:#B98A73;stroke-width:2}
+.cara text{font:600 12px var(--txt);fill:var(--rotu)}
+.cara .anota{fill:var(--urg)}
+@media (prefers-reduced-motion:no-preference){
+  .cara .dib{stroke-dasharray:var(--l);stroke-dashoffset:var(--l);animation:trazo 1.4s cubic-bezier(.6,.1,.3,1) forwards;animation-delay:var(--d,0s)}
+  .cara .fina.dib{stroke-dasharray:6 7;stroke-dashoffset:0;opacity:0;animation:aparece .5s forwards;animation-delay:var(--d,0s)}
+  .cara .pto,.cara .riesgo,.cara text{opacity:0;animation:aparece .4s forwards;animation-delay:var(--d,1.6s)}
+  @keyframes trazo{to{stroke-dashoffset:0}}
+  @keyframes aparece{to{opacity:1}}
+}
+
+/* secciones */
+section{padding:84px 0}
+.h2{font-family:var(--disp);font-weight:800;font-size:clamp(30px,4vw,48px);line-height:1.05;letter-spacing:-.025em;margin:0 0 14px;max-width:22ch}
+.lead{font-size:19px;color:var(--gris);max-width:62ch;margin:0 0 40px}
+
+/* recorrido */
+.ruta{position:relative;display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin:0;padding:0;list-style:none}
+.ruta::before{content:"";position:absolute;left:4%;right:4%;top:27px;height:3px;background:repeating-linear-gradient(90deg,var(--rotu) 0 10px,transparent 10px 18px)}
+.paso{position:relative;text-align:left}
+.paso button{all:unset;cursor:pointer;display:block;width:100%;padding:0 4px 8px;border-radius:10px}
+.paso .num{position:relative;z-index:1;display:grid;place-items:center;width:56px;height:56px;border-radius:50%;background:#fff;border:3px solid var(--rotu);font-family:var(--disp);font-weight:800;font-size:22px;color:var(--rotu);margin-bottom:12px;transition:background .2s,color .2s}
+.paso .cuando{display:block;font-size:13px;color:var(--gris)}
+.paso .app{display:block;font-family:var(--disp);font-weight:800;font-size:20px;letter-spacing:-.01em;margin-top:2px}
+.paso button[aria-pressed=true] .num,.paso button:hover .num{background:var(--rotu);color:#fff}
+.paso.urg .num{border-color:var(--urg);color:var(--urg)}
+.paso.urg button[aria-pressed=true] .num,.paso.urg button:hover .num{background:var(--urg);color:#fff}
+.siempre{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0 0}
+.siempre button{all:unset;cursor:pointer;display:flex;align-items:center;gap:10px;border:1.5px dashed var(--rotu);border-radius:12px;padding:10px 16px;font-size:15px}
+.siempre button b{font-family:var(--disp);font-size:17px}
+.siempre button[aria-pressed=true]{background:var(--rotu);color:#fff;border-style:solid}
+
+.ficha{margin-top:34px;display:grid;grid-template-columns:1.2fr 1fr;gap:0;border:1px solid var(--linea);border-radius:20px;overflow:hidden;background:var(--papel);box-shadow:0 20px 50px -30px rgba(91,42,134,.45)}
+.ficha .izq{padding:34px 36px}
+.ficha .der{padding:34px 32px;background:var(--suave);border-left:1px solid var(--linea)}
+.ficha .nombre{font-family:var(--disp);font-weight:800;font-size:clamp(34px,4.4vw,54px);letter-spacing:-.03em;line-height:1;margin:6px 0 10px;color:var(--rotu)}
+.ficha.es-urg .nombre{color:var(--urg)}
+.ficha .momento{font-size:15px;color:var(--gris);margin:0}
+.ficha .que{font-size:19px;margin:16px 0 18px;max-width:46ch}
+.ficha ul{margin:0;padding-left:20px}
+.ficha li{margin:6px 0}
+.ficha h3{font-family:var(--disp);font-size:17px;margin:0 0 8px}
+.ficha .bloque+.bloque{margin-top:22px}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;border-radius:999px;padding:4px 12px;margin:0 6px 6px 0}
+.chip.sin{background:#DDF1EE;color:#075049}
+.chip.con{background:#ECE3F5;color:#4A2070}
+.chip.est{background:#fff;border:1px solid var(--linea);color:var(--gris)}
+.chip svg{width:14px;height:14px}
+
+/* principios */
+.reglas{background:var(--tinta);color:#F4EEF8}
+.reglas .h2{color:#fff}
+.reglas .lead{color:#CFC4DA}
+.tres{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.regla .grande{font-family:var(--disp);font-weight:800;font-size:clamp(26px,2.6vw,34px);line-height:1.08;letter-spacing:-.02em;margin:0 0 12px;color:#fff}
+.regla p{margin:0;color:#D8CEE2;max-width:38ch}
+.regla .raya{width:56px;height:4px;border-radius:2px;margin-bottom:20px}
+
+/* complementarias */
+.compl{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--linea);border:1px solid var(--linea);border-radius:16px;overflow:hidden}
+.compl a{display:block;background:#fff;padding:22px 22px 24px;text-decoration:none;color:var(--tinta);min-height:150px}
+.compl a:hover{background:var(--suave)}
+.compl .n{font-family:var(--disp);font-weight:800;font-size:21px;color:var(--rotu);letter-spacing:-.01em}
+.compl .g{display:block;font-size:13px;color:var(--gris);margin-top:2px}
+.compl p{margin:10px 0 0;font-size:15px;line-height:1.45}
+.compl a.dest{grid-column:span 2;background:var(--piel)}
+.compl a.dest:hover{background:var(--piel2)}
+.compl a.dest .n{font-size:28px}
+
+/* estado y pie */
+.estado{background:var(--suave)}
+.estado .wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.estado ol{margin:0;padding-left:22px}
+.estado li{margin:10px 0}
+.estado li b{font-family:var(--disp)}
+.aviso{border-left:4px solid var(--urg);padding:4px 0 4px 18px;color:#3A3048;max-width:58ch}
+footer{padding:44px 0 56px;font-size:15px;color:var(--gris)}
+footer .autores{display:flex;flex-wrap:wrap;gap:28px;margin:0 0 18px}
+footer .autores b{display:block;color:var(--tinta);font-size:16px}
+footer .autores a{font-size:14px}
+
+@media (max-width:980px){
+  .hero .wrap{grid-template-columns:1fr;padding-top:36px}
+  .cara{max-width:360px}
+  .ruta{grid-template-columns:repeat(3,1fr);row-gap:26px}
+  .ruta::before{display:none}
+  .ficha{grid-template-columns:1fr}
+  .ficha .der{border-left:0;border-top:1px solid var(--linea)}
+  .tres{grid-template-columns:1fr;gap:34px}
+  .compl{grid-template-columns:repeat(2,1fr)}
+  .estado .wrap{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  body{font-size:16px}
+  .wrap{padding:0 18px}
+  section{padding:60px 0}
+  .ruta{grid-template-columns:repeat(2,1fr)}
+  .ficha .izq,.ficha .der{padding:24px 22px}
+  .compl{grid-template-columns:1fr}
+  .compl a.dest{grid-column:auto}
+  .langs button{padding:6px 8px}
+}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="marca" href="#inicio"><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="#5B2A86"/><path d="M14 6c-4 0-6 3-6 7 0 4.5 2.6 8 6 9.6 3.4-1.6 6-5.1 6-9.6 0-4-2-7-6-7z" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="14" cy="10.5" r="1.3" fill="#fff"/><circle cx="11" cy="15" r="1.1" fill="#fff"/><circle cx="17" cy="15" r="1.1" fill="#fff"/></svg><span>Kit EstéticIA</span></a>
+  <div class="langs" role="group" aria-label="Idioma"><button type="button" data-lang="es">ES</button><button type="button" data-lang="en">EN</button><button type="button" data-lang="pt">PT</button></div>
+</div></header>
+
+<main id="inicio">
+  <div class="hero"><div class="wrap">
+    <div>
+      <h1 data-t="h1"></h1>
+      <p class="sub" data-t="sub"></p>
+      <a class="cta" href="#ruta" data-t="cta"></a>
+      <p class="meta" data-t="meta"></p>
+    </div>
+    <svg class="cara" viewBox="0 0 420 470" role="img" data-t-aria="caraAria">
+      <defs><pattern id="rayado" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#F2D7C9"/><line x1="0" y1="0" x2="0" y2="6" stroke="#B3203A" stroke-width="2"/></pattern></defs>
+      <path class="contorno" d="M210 34c-78 0-126 56-126 142 0 96 54 182 126 232 72-50 126-136 126-232 0-86-48-142-126-142z"/>
+      <path class="contorno" d="M150 176q20-10 40 0M230 176q20-10 40 0M196 196v62q-8 10 -16 6M224 258q-6 10 -14 6M170 314q40-14 80 0q-40 18 -80 0"/>
+      <!-- línea media y tercios -->
+      <path class="traz fina dib" d="M210 40v388" style="--d:.2s"/>
+      <path class="traz fina dib" d="M96 150h228M92 258h236" style="--d:.4s"/>
+      <!-- vectores malares -->
+      <path class="traz dib" d="M138 300 L112 222 m-9 12 l9 -12 l12 7" style="--l:110;--d:.7s"/>
+      <path class="traz dib" d="M282 300 L308 222 m-12 7 l12 -7 l9 12" style="--l:110;--d:.85s"/>
+      <!-- patas de gallo -->
+      <path class="traz dib" d="M128 160q-14 10 -20 26M292 160q14 10 20 26" style="--l:70;--d:1s"/>
+      <!-- zona de riesgo glabelar -->
+      <path class="riesgo" d="M196 132q14 -10 28 0l-4 34q-10 6 -20 0z" style="--d:1.5s"/>
+      <!-- puntos de inyección -->
+      <g style="--d:1.7s"><circle class="pto" cx="210" cy="126" r="4.2"/><circle class="pto" cx="190" cy="138" r="4.2"/><circle class="pto" cx="230" cy="138" r="4.2"/><circle class="pto" cx="172" cy="128" r="4.2"/><circle class="pto" cx="248" cy="128" r="4.2"/></g>
+      <g style="--d:1.8s"><circle class="pto" cx="106" cy="168" r="3.6"/><circle class="pto" cx="102" cy="184" r="3.6"/><circle class="pto" cx="314" cy="168" r="3.6"/><circle class="pto" cx="318" cy="184" r="3.6"/></g>
+      <text class="anota" x="240" y="108" style="--d:1.9s" data-t="anRiesgo"></text>
+      <path class="traz fina dib" d="M236 104 L222 128" style="--d:1.9s;stroke:#B3203A"/>
+      <text x="40" y="250" style="--d:2s" data-t="anVector"></text>
+      <text x="336" y="146" style="--d:2s" data-t="anTercio"></text>
+    </svg>
+  </div></div>
+
+  <section id="ruta"><div class="wrap">
+    <h2 class="h2" data-t="rutaH"></h2>
+    <p class="lead" data-t="rutaLead"></p>
+    <ol class="ruta" id="pasos"></ol>
+    <div class="siempre" id="transv"></div>
+    <article class="ficha" id="ficha" aria-live="polite"></article>
+  </div></section>
+
+  <section class="reglas"><div class="wrap">
+    <h2 class="h2" data-t="reglasH"></h2>
+    <p class="lead" data-t="reglasLead"></p>
+    <div class="tres" id="tres"></div>
+  </div></section>
+
+  <section id="ya"><div class="wrap">
+    <h2 class="h2" data-t="yaH"></h2>
+    <p class="lead" data-t="yaLead"></p>
+    <div class="compl" id="compl"></div>
+  </div></section>
+
+  <section class="estado"><div class="wrap">
+    <div>
+      <h2 class="h2" data-t="estH"></h2>
+      <p class="lead" data-t="estLead" style="margin-bottom:24px"></p>
+      <ol id="orden"></ol>
+    </div>
+    <div>
+      <h2 class="h2" style="font-size:clamp(24px,2.6vw,32px)" data-t="limH"></h2>
+      <p class="aviso" data-t="lim"></p>
+    </div>
+  </div></section>
+</main>
+
+<footer><div class="wrap">
+  <div class="autores">
+    <div><b>Fernando Borrás Rocher</b><span data-t="afFer"></span><br><a href="https://orcid.org/0000-0002-5519-4573" target="_blank" rel="noopener">ORCID 0000-0002-5519-4573</a></div>
+    <div><b>Elena Caride Miana</b><span>Dra. Caride Medicina Estética &amp; Antiaging</span><br><a href="https://orcid.org/0000-0002-7620-4857" target="_blank" rel="noopener">ORCID 0000-0002-7620-4857</a></div>
+  </div>
+  <p data-t="pie"></p>
+</div></footer>
+
+<script>
+const IC = {
+  sin:'<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  con:'<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5l1.6 4.2 4.4.3-3.4 2.8 1.1 4.3L8 10.7l-3.7 2.4 1.1-4.3L2 6l4.4-.3z" fill="currentColor"/></svg>'
+};
+/* apps del recorrido: [id, ¿urgencia?] — el texto está en T */
+const PASOS = ['anamnesia','valoria','consentia','pautia','urgencia','seguimia'];
+const TRANSV = ['dermatoscopia','cumplia'];
+const COMPL = [['esteticia',1],['evidentia'],['doctoralia'],['prismia'],['mentoria'],['manuscriptor'],['posteria'],['esquemia']];
+const T = {
+ es:{
+  title:'Kit EstéticIA · Las apps de la consulta de medicina estética',
+  h1:'Tu consulta, de la puerta a la revisión.',
+  sub:'Ocho apps para cada momento del paciente: valorar, informar, tratar, resolver una urgencia y medir el resultado. Pensadas para que dediques el tiempo a la persona, no al papeleo.',
+  cta:'Ver el recorrido',
+  meta:'Máster de Formación Permanente en Medicina Estética Integral y Antienvejecimiento · Universidad Miguel Hernández de Elche',
+  caraAria:'Cara dibujada con rotulador dérmico: tercios faciales, vectores malares, puntos de inyección y la glabela marcada como zona de riesgo',
+  anRiesgo:'zona de riesgo', anVector:'vector malar', anTercio:'tercio medio',
+  rutaH:'Un paciente, seis momentos, una app para cada uno',
+  rutaLead:'Sigue el orden real de la consulta. Pulsa cada paso para ver qué hace la app, qué comprueba por ti y si usa inteligencia artificial.',
+  transv:'Además, en cualquier momento:',
+  momento:'Momento', hace:'Qué hace', comprueba:'Qué comprueba por ti', usa:'Cómo funciona',
+  sinIA:'Funciona sin IA y sin conexión', conIA:'IA opcional para redactar, con tu clave', estado:'En construcción',
+  apps:{
+   anamnesia:{n:'AnamnesIA',cuando:'Llega el paciente',que:'La primera visita guiada: lo que hay que preguntar según el tratamiento que pide, sin olvidar nada.',hace:['Anamnesis estructurada por técnica: fármacos, alergias, embarazo y lactancia, enfermedades, tratamientos previos','Cribado de expectativas y de trastorno dismórfico corporal con cuestionario validado','Resumen listo para pegar en la historia clínica'],comp:['Contraindicaciones de cada técnica con reglas fijas y explicadas','Que no falte ningún dato obligatorio antes de seguir'],ia:0},
+   valoria:{n:'ValorIA',cuando:'Exploras y propones',que:'El diagnóstico facial por tercios y por capas convertido en un plan por fases que la paciente entiende.',hace:['Exploración guiada en reposo y con el gesto','Escalas de Fitzpatrick, Glogau y gravedad de arrugas','Plan por fases, de la causa al síntoma, con su presupuesto'],comp:['Que el plan trate el soporte antes que el surco','Las zonas de riesgo que afectan a cada técnica propuesta'],ia:0},
+   consentia:{n:'ConsentIA',cuando:'Informas y firmas',que:'Consentimiento informado e instrucciones claras, en el idioma de cada paciente.',hace:['Consentimiento por técnica: toxina, ácido hialurónico, hilos, peelings, láser, plasma rico en plaquetas, corporal','Instrucciones previas y posteriores al tratamiento','Versión en español, inglés, portugués y otros idiomas, en PDF o Word'],comp:['Los apartados que exige la Ley 41/2002','Que el texto sea de lectura fácil'],ia:1},
+   pautia:{n:'PautIA',cuando:'Tratas',que:'Los cálculos y el registro del procedimiento, en una sola pantalla junto a la camilla.',hace:['Reconstitución de toxina, dosis máxima de anestésico, fluencia láser, centrífuga y diluciones','Mapa facial de puntos y unidades','Producto, lote y caducidad de cada tratamiento'],comp:['Cada fórmula paso a paso, con los datos de la ficha técnica de tu producto','Que la trazabilidad quede completa'],ia:0},
+   urgencia:{n:'UrgencIA',cuando:'Si algo va mal',que:'El protocolo de urgencia en pantalla, con reloj y registro, cuando no hay tiempo para pensar.',hace:['Oclusión vascular, pérdida de visión, anafilaxia, toxicidad por anestésico y síncope','Cronómetro y registro de cada acción con su hora','Informe de traslado y revisión mensual del carro de urgencias'],comp:['El orden de las acciones del protocolo','Las caducidades de la hialuronidasa y la adrenalina'],ia:0,urg:1},
+   seguimia:{n:'SeguimIA',cuando:'Revisas el resultado',que:'El seguimiento que demuestra el resultado y detecta a tiempo lo que no va bien.',hace:['Comparación del antes y el después en condiciones iguales','Escala de mejoría global y opinión de la paciente','Revisiones y retoques programados; efectos adversos tardíos y su notificación a la AEMPS'],comp:['Que la fotografía de control sea comparable','Que ningún efecto adverso se quede sin registrar'],ia:0},
+   dermatoscopia:{n:'DermatoscopIA',cuando:'Antes de tratar una mancha',que:'Ninguna lesión pigmentada se trata sin nombre: reglas de dermatoscopia y criterio claro para derivar.',hace:['Regla ABCD y listas de tres y siete puntos','Decisión de tratar, vigilar o derivar','Registro de la lesión para compararla en la siguiente visita'],comp:['La puntuación de cada regla','Que una lesión sospechosa no pase al láser'],ia:0},
+   cumplia:{n:'CumplIA',cuando:'Antes de publicar o abrir',que:'La consulta en regla: autorización sanitaria, datos de pacientes y publicidad en redes sin sorpresas.',hace:['Revisión de tus publicaciones antes de colgarlas','Lista de comprobación de la unidad U.48 y del RGPD','Consentimiento específico para usar imágenes'],comp:['Que no se anuncie un medicamento de prescripción','Promesas de resultado y fotos sin consentimiento'],ia:1}
+  },
+  reglasH:'Tres reglas que no se negocian',
+  reglasLead:'El kit trabaja con datos de salud y con decisiones que afectan a personas. Por eso está construido así:',
+  reglas:[
+   ['#0B7268','Lo urgente no depende de la IA.','Urgencias, cálculos, escalas y dermatoscopia funcionan sin inteligencia artificial y sin conexión. El resultado lo calcula el código y puedes ver cada paso.'],
+   ['#7B45AD','Las caras no salen de tu ordenador.','Las fotos y los datos que identifican al paciente se guardan cifrados en el navegador de la consulta. La IA, cuando se usa, solo recibe texto anonimizado.'],
+   ['#B3203A','Decides tú.','El kit documenta, calcula y te recuerda lo que no debe faltar. No diagnostica ni elige el tratamiento: la responsabilidad clínica es del médico.']
+  ],
+  yaH:'Lo que ya puedes usar hoy',
+  yaLead:'Mientras se construye el kit, estas apps ya están publicadas. La primera es la del máster; las demás te acompañan en la evidencia y en el Trabajo de Fin de Máster.',
+  compl:{
+   esteticia:['EstéticIA','Formación','Las 11 asignaturas del máster con laboratorios, calculadoras, pacientes virtuales, complicaciones, ECOE y simulacro.'],
+   evidentia:['EvidentIA','Evidencia','De la pregunta clínica a la búsqueda en PubMed con descriptores MeSH comprobados.'],
+   doctoralia:['Doctoralia','Evidencia','Revisiones del estado de la cuestión con citas verificadas.'],
+   prismia:['PRISMIA','Evidencia','Revisión sistemática con dos revisores de IA y un árbitro.'],
+   mentoria:['MentorIA','TFM','Tutor que acompaña tu Trabajo de Fin de Máster sin escribirlo por ti.'],
+   manuscriptor:['Manuscriptor','Publicar','Redacción guiada de un artículo con estructura IMRaD.'],
+   posteria:['PosterIA','Congresos','Pósteres académicos listos para imprimir.'],
+   esquemia:['EsquemIA','Congresos','Figuras conceptuales, diagramas de flujo y resúmenes gráficos.']
+  },
+  estH:'En qué orden llegan',
+  estLead:'Las apps nuevas se publican por fases, empezando por lo que más protege al paciente:',
+  orden:[['UrgencIA','la seguridad primero'],['AnamnesIA y ConsentIA','las que más tiempo ahorran en cada primera visita'],['PautIA y SeguimIA','cierran el ciclo y la trazabilidad'],['DermatoscopIA y CumplIA','criterio antes de tratar y consulta en regla']],
+  limH:'Lo que el kit no es',
+  lim:'Es una herramienta de apoyo para médicos. No es un producto sanitario, no sustituye a las fichas técnicas, a los protocolos escritos de tu consulta ni a tu juicio clínico, y no debe usarse para decidir sobre un paciente sin tu valoración.',
+  afFer:'Universidad Miguel Hernández de Elche',
+  pie:'Kit EstéticIA para el alumnado del Máster de Formación Permanente en Medicina Estética Integral y Antienvejecimiento (UMH). Licencia MIT.'
+ },
+ en:{
+  title:'EstéticIA Kit · Apps for the aesthetic medicine clinic',
+  h1:'Your clinic, from the door to the follow-up.',
+  sub:'Eight apps for every moment of the patient journey: assess, inform, treat, handle an emergency and measure the result. Built so you spend your time on the person, not the paperwork.',
+  cta:'See the journey',
+  meta:'Master\'s in Comprehensive Aesthetic and Anti-Ageing Medicine · Miguel Hernández University of Elche',
+  caraAria:'Face drawn with a skin marker: facial thirds, malar vectors, injection points and the glabella marked as a danger zone',
+  anRiesgo:'danger zone', anVector:'malar vector', anTercio:'midface',
+  rutaH:'One patient, six moments, one app for each',
+  rutaLead:'Follow the real order of the consultation. Select each step to see what the app does, what it checks for you and whether it uses artificial intelligence.',
+  transv:'And at any moment:',
+  momento:'Moment', hace:'What it does', comprueba:'What it checks for you', usa:'How it works',
+  sinIA:'Works without AI and offline', conIA:'Optional AI for writing, with your key', estado:'In development',
+  apps:{
+   anamnesia:{n:'AnamnesIA',cuando:'The patient arrives',que:'A guided first visit: what to ask for the treatment requested, with nothing left out.',hace:['Structured history by technique: drugs, allergies, pregnancy and breastfeeding, illnesses, previous treatments','Screening for expectations and body dysmorphic disorder with a validated questionnaire','A summary ready to paste into the clinical record'],comp:['Contraindications for each technique with fixed, explained rules','That no mandatory item is missing before moving on'],ia:0},
+   valoria:{n:'ValorIA',cuando:'You examine and propose',que:'Facial assessment by thirds and layers turned into a phased plan the patient understands.',hace:['Guided examination at rest and on animation','Fitzpatrick, Glogau and wrinkle severity scales','A phased plan, from cause to symptom, with its estimate'],comp:['That the plan treats support before the fold','The danger zones that affect each proposed technique'],ia:0},
+   consentia:{n:'ConsentIA',cuando:'You inform and sign',que:'Informed consent and clear instructions in each patient\'s language.',hace:['Consent by technique: toxin, hyaluronic acid, threads, peels, laser, platelet-rich plasma, body treatments','Pre- and post-treatment instructions','Spanish, English, Portuguese and other languages, as PDF or Word'],comp:['The sections required by Spanish Law 41/2002','That the text is easy to read'],ia:1},
+   pautia:{n:'PautIA',cuando:'You treat',que:'The procedure\'s calculations and record on a single screen beside the couch.',hace:['Toxin reconstitution, maximum anaesthetic dose, laser fluence, centrifuge and dilutions','Facial map of points and units','Product, batch and expiry date of each treatment'],comp:['Every formula step by step, using your product\'s information','That traceability is complete'],ia:0},
+   urgencia:{n:'UrgencIA',cuando:'If something goes wrong',que:'The emergency protocol on screen, with a clock and a log, when there is no time to think.',hace:['Vascular occlusion, loss of vision, anaphylaxis, anaesthetic toxicity and syncope','Timer and time-stamped log of every action','Transfer report and monthly check of the emergency trolley'],comp:['The order of the protocol\'s actions','Expiry dates of hyaluronidase and adrenaline'],ia:0,urg:1},
+   seguimia:{n:'SeguimIA',cuando:'You review the result',que:'Follow-up that shows the result and spots early what is not going well.',hace:['Before-and-after comparison under the same conditions','Global improvement scale and the patient\'s view','Scheduled reviews and touch-ups; late adverse events and their report to the AEMPS'],comp:['That the control photograph is comparable','That no adverse event goes unrecorded'],ia:0},
+   dermatoscopia:{n:'DermatoscopIA',cuando:'Before treating a spot',que:'No pigmented lesion is treated without a name: dermoscopy rules and clear referral criteria.',hace:['ABCD rule and three- and seven-point checklists','Decision to treat, monitor or refer','Lesion record to compare at the next visit'],comp:['The score of each rule','That a suspicious lesion never reaches the laser'],ia:0},
+   cumplia:{n:'CumplIA',cuando:'Before posting or opening',que:'A compliant clinic: health authorisation, patient data and social media advertising without surprises.',hace:['Review of your posts before publishing them','Checklist for care unit U.48 and the GDPR','Specific consent for using images'],comp:['That no prescription medicine is advertised','Promised results and photos without consent'],ia:1}
+  },
+  reglasH:'Three non-negotiable rules',
+  reglasLead:'The kit works with health data and with decisions that affect people. That is why it is built like this:',
+  reglas:[
+   ['#0B7268','Emergencies do not depend on AI.','Emergencies, calculations, scales and dermoscopy work without artificial intelligence and offline. The code calculates the result and you can see every step.'],
+   ['#7B45AD','Faces never leave your computer.','Photos and identifying patient data are stored encrypted in the clinic\'s browser. When AI is used, it only receives anonymised text.'],
+   ['#B3203A','You decide.','The kit documents, calculates and reminds you of what must not be missed. It does not diagnose or choose the treatment: clinical responsibility lies with the doctor.']
+  ],
+  yaH:'What you can already use today',
+  yaLead:'While the kit is being built, these apps are already published. The first is the master\'s own app; the others support you with evidence and your master\'s thesis.',
+  compl:{
+   esteticia:['EstéticIA','Learning','The master\'s 11 subjects with labs, calculators, virtual patients, complications, OSCE and mock exam.'],
+   evidentia:['EvidentIA','Evidence','From the clinical question to a PubMed search with verified MeSH terms.'],
+   doctoralia:['Doctoralia','Evidence','State-of-the-art reviews with verified citations.'],
+   prismia:['PRISMIA','Evidence','Systematic review with two AI reviewers and an arbiter.'],
+   mentoria:['MentorIA','Thesis','A tutor that supports your master\'s thesis without writing it for you.'],
+   manuscriptor:['Manuscriptor','Publish','Guided writing of an IMRaD article.'],
+   posteria:['PosterIA','Conferences','Academic posters ready to print.'],
+   esquemia:['EsquemIA','Conferences','Conceptual figures, flowcharts and graphical abstracts.']
+  },
+  estH:'In what order they arrive',
+  estLead:'The new apps are published in phases, starting with what protects the patient most:',
+  orden:[['UrgencIA','safety first'],['AnamnesIA and ConsentIA','the biggest time savers at every first visit'],['PautIA and SeguimIA','they close the loop and the traceability'],['DermatoscopIA and CumplIA','judgement before treating and a compliant clinic']],
+  limH:'What the kit is not',
+  lim:'It is a support tool for doctors. It is not a medical device, it does not replace product information, your clinic\'s written protocols or your clinical judgement, and it must not be used to decide about a patient without your assessment.',
+  afFer:'Miguel Hernández University of Elche',
+  pie:'EstéticIA Kit for students of the Master\'s in Comprehensive Aesthetic and Anti-Ageing Medicine (UMH). MIT licence.'
+ },
+ pt:{
+  title:'Kit EstéticIA · As apps da consulta de medicina estética',
+  h1:'A sua consulta, da porta à revisão.',
+  sub:'Oito apps para cada momento do doente: avaliar, informar, tratar, resolver uma urgência e medir o resultado. Pensadas para que dedique o tempo à pessoa, não à papelada.',
+  cta:'Ver o percurso',
+  meta:'Mestrado de Formação Permanente em Medicina Estética Integral e Antienvelhecimento · Universidade Miguel Hernández de Elche',
+  caraAria:'Rosto desenhado com marcador dérmico: terços faciais, vetores malares, pontos de injeção e a glabela marcada como zona de risco',
+  anRiesgo:'zona de risco', anVector:'vetor malar', anTercio:'terço médio',
+  rutaH:'Um doente, seis momentos, uma app para cada um',
+  rutaLead:'Siga a ordem real da consulta. Selecione cada passo para ver o que a app faz, o que verifica por si e se usa inteligência artificial.',
+  transv:'E, em qualquer momento:',
+  momento:'Momento', hace:'O que faz', comprueba:'O que verifica por si', usa:'Como funciona',
+  sinIA:'Funciona sem IA e sem ligação', conIA:'IA opcional para redigir, com a sua chave', estado:'Em construção',
+  apps:{
+   anamnesia:{n:'AnamnesIA',cuando:'Chega o doente',que:'A primeira consulta guiada: o que perguntar segundo o tratamento pedido, sem esquecer nada.',hace:['Anamnese estruturada por técnica: fármacos, alergias, gravidez e amamentação, doenças, tratamentos prévios','Rastreio de expectativas e de perturbação dismórfica corporal com questionário validado','Resumo pronto a colar no processo clínico'],comp:['Contraindicações de cada técnica com regras fixas e explicadas','Que não falte nenhum dado obrigatório antes de avançar'],ia:0},
+   valoria:{n:'ValorIA',cuando:'Examina e propõe',que:'O diagnóstico facial por terços e por camadas convertido num plano por fases que a doente compreende.',hace:['Exame guiado em repouso e com o gesto','Escalas de Fitzpatrick, Glogau e gravidade das rugas','Plano por fases, da causa ao sintoma, com o seu orçamento'],comp:['Que o plano trate o suporte antes do sulco','As zonas de risco que afetam cada técnica proposta'],ia:0},
+   consentia:{n:'ConsentIA',cuando:'Informa e assina',que:'Consentimento informado e instruções claras, na língua de cada doente.',hace:['Consentimento por técnica: toxina, ácido hialurónico, fios, peelings, laser, plasma rico em plaquetas, corporal','Instruções antes e depois do tratamento','Versão em espanhol, inglês, português e outras línguas, em PDF ou Word'],comp:['As secções exigidas pela Lei espanhola 41/2002','Que o texto seja de leitura fácil'],ia:1},
+   pautia:{n:'PautIA',cuando:'Trata',que:'Os cálculos e o registo do procedimento, num só ecrã junto à marquesa.',hace:['Reconstituição de toxina, dose máxima de anestésico, fluência laser, centrífuga e diluições','Mapa facial de pontos e unidades','Produto, lote e validade de cada tratamento'],comp:['Cada fórmula passo a passo, com os dados do resumo das características do seu produto','Que a rastreabilidade fique completa'],ia:0},
+   urgencia:{n:'UrgencIA',cuando:'Se algo correr mal',que:'O protocolo de urgência no ecrã, com relógio e registo, quando não há tempo para pensar.',hace:['Oclusão vascular, perda de visão, anafilaxia, toxicidade por anestésico e síncope','Cronómetro e registo de cada ação com a sua hora','Relatório de transferência e revisão mensal do carro de urgência'],comp:['A ordem das ações do protocolo','As validades da hialuronidase e da adrenalina'],ia:0,urg:1},
+   seguimia:{n:'SeguimIA',cuando:'Revê o resultado',que:'O seguimento que demonstra o resultado e deteta a tempo o que não corre bem.',hace:['Comparação do antes e depois em condições iguais','Escala de melhoria global e opinião da doente','Revisões e retoques programados; efeitos adversos tardios e a sua notificação à AEMPS'],comp:['Que a fotografia de controlo seja comparável','Que nenhum efeito adverso fique por registar'],ia:0},
+   dermatoscopia:{n:'DermatoscopIA',cuando:'Antes de tratar uma mancha',que:'Nenhuma lesão pigmentada se trata sem nome: regras de dermatoscopia e critério claro para referenciar.',hace:['Regra ABCD e listas de três e sete pontos','Decisão de tratar, vigiar ou referenciar','Registo da lesão para a comparar na consulta seguinte'],comp:['A pontuação de cada regra','Que uma lesão suspeita não chegue ao laser'],ia:0},
+   cumplia:{n:'CumplIA',cuando:'Antes de publicar ou abrir',que:'A consulta em regra: autorização sanitária, dados de doentes e publicidade nas redes sem surpresas.',hace:['Revisão das suas publicações antes de as colocar','Lista de verificação da unidade U.48 e do RGPD','Consentimento específico para usar imagens'],comp:['Que não se anuncie um medicamento sujeito a receita','Promessas de resultado e fotos sem consentimento'],ia:1}
+  },
+  reglasH:'Três regras que não se negoceiam',
+  reglasLead:'O kit trabalha com dados de saúde e com decisões que afetam pessoas. Por isso está construído assim:',
+  reglas:[
+   ['#0B7268','O urgente não depende da IA.','Urgências, cálculos, escalas e dermatoscopia funcionam sem inteligência artificial e sem ligação. O resultado é calculado pelo código e pode ver cada passo.'],
+   ['#7B45AD','Os rostos não saem do seu computador.','As fotos e os dados que identificam o doente ficam cifrados no navegador da consulta. A IA, quando usada, só recebe texto anonimizado.'],
+   ['#B3203A','Quem decide é o médico.','O kit documenta, calcula e lembra o que não pode faltar. Não diagnostica nem escolhe o tratamento: a responsabilidade clínica é do médico.']
+  ],
+  yaH:'O que já pode usar hoje',
+  yaLead:'Enquanto o kit é construído, estas apps já estão publicadas. A primeira é a do mestrado; as restantes acompanham-no na evidência e no Trabalho Final de Mestrado.',
+  compl:{
+   esteticia:['EstéticIA','Formação','As 11 unidades curriculares do mestrado com laboratórios, calculadoras, doentes virtuais, complicações, ECOE e simulacro.'],
+   evidentia:['EvidentIA','Evidência','Da pergunta clínica à pesquisa no PubMed com descritores MeSH verificados.'],
+   doctoralia:['Doctoralia','Evidência','Revisões do estado da arte com citações verificadas.'],
+   prismia:['PRISMIA','Evidência','Revisão sistemática com dois revisores de IA e um árbitro.'],
+   mentoria:['MentorIA','TFM','Tutor que acompanha o seu Trabalho Final de Mestrado sem o escrever por si.'],
+   manuscriptor:['Manuscriptor','Publicar','Redação guiada de um artigo com estrutura IMRaD.'],
+   posteria:['PosterIA','Congressos','Pósteres académicos prontos a imprimir.'],
+   esquemia:['EsquemIA','Congressos','Figuras concetuais, fluxogramas e resumos gráficos.']
+  },
+  estH:'Por que ordem chegam',
+  estLead:'As novas apps são publicadas por fases, começando pelo que mais protege o doente:',
+  orden:[['UrgencIA','a segurança primeiro'],['AnamnesIA e ConsentIA','as que mais tempo poupam em cada primeira consulta'],['PautIA e SeguimIA','fecham o ciclo e a rastreabilidade'],['DermatoscopIA e CumplIA','critério antes de tratar e consulta em regra']],
+  limH:'O que o kit não é',
+  lim:'É uma ferramenta de apoio para médicos. Não é um dispositivo médico, não substitui os resumos das características, os protocolos escritos da sua consulta nem o seu juízo clínico, e não deve ser usado para decidir sobre um doente sem a sua avaliação.',
+  afFer:'Universidade Miguel Hernández de Elche',
+  pie:'Kit EstéticIA para os estudantes do Mestrado de Formação Permanente em Medicina Estética Integral e Antienvelhecimento (UMH). Licença MIT.'
+ }
+};
+let L = 'es', SEL = 'anamnesia';
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const $ = id => document.getElementById(id);
+function pinta() {
+  const t = T[L];
+  document.documentElement.lang = L; document.title = t.title;
+  document.querySelectorAll('[data-t]').forEach(el => { el.textContent = t[el.dataset.t]; });
+  document.querySelectorAll('[data-t-aria]').forEach(el => el.setAttribute('aria-label', t[el.dataset.tAria]));
+  document.querySelectorAll('.langs button').forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === L));
+  $('pasos').innerHTML = PASOS.map((id, i) => { const a = t.apps[id]; return `<li class="paso${a.urg ? ' urg' : ''}"><button type="button" data-app="${id}" aria-pressed="${SEL === id}" aria-controls="ficha"><span class="num">${i + 1}</span><span class="cuando">${esc(a.cuando)}</span><span class="app">${esc(a.n)}</span></button></li>`; }).join('');
+  $('transv').innerHTML = `<span style="align-self:center;color:var(--gris);font-size:15px">${esc(t.transv)}</span>` + TRANSV.map(id => `<button type="button" data-app="${id}" aria-pressed="${SEL === id}" aria-controls="ficha"><b>${esc(t.apps[id].n)}</b><span>${esc(t.apps[id].cuando)}</span></button>`).join('');
+  const a = t.apps[SEL];
+  $('ficha').className = 'ficha' + (a.urg ? ' es-urg' : '');
+  $('ficha').innerHTML = `<div class="izq"><p class="momento">${esc(t.momento)}: ${esc(a.cuando)}</p><h3 class="nombre">${esc(a.n)}</h3><p class="que">${esc(a.que)}</p>
+      <div><span class="chip ${a.ia ? 'con' : 'sin'}">${a.ia ? IC.con : IC.sin}${esc(a.ia ? t.conIA : t.sinIA)}</span><span class="chip est">${esc(t.estado)}</span></div></div>
+    <div class="der"><div class="bloque"><h3>${esc(t.hace)}</h3><ul>${a.hace.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>
+      <div class="bloque"><h3>${esc(t.comprueba)}</h3><ul>${a.comp.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div></div>`;
+  $('tres').innerHTML = t.reglas.map(([c, g, p]) => `<div class="regla"><div class="raya" style="background:${c}"></div><p class="grande">${esc(g)}</p><p>${esc(p)}</p></div>`).join('');
+  $('compl').innerHTML = COMPL.map(([id, d]) => { const c = t.compl[id]; return `<a class="${d ? 'dest' : ''}" href="https://fborrasumh.github.io/${id}/" target="_blank" rel="noopener"><span class="n">${esc(c[0])}</span><span class="g">${esc(c[1])}</span><p>${esc(c[2])}</p></a>`; }).join('');
+  $('orden').innerHTML = t.orden.map(([a2, b]) => `<li><b>${esc(a2)}</b>: ${esc(b)}</li>`).join('');
+  document.querySelectorAll('[data-app]').forEach(b => b.onclick = () => { SEL = b.dataset.app; pinta(); document.querySelector(`[data-app="${SEL}"]`).focus(); });
+}
+document.querySelectorAll('.langs button').forEach(b => b.onclick = () => { L = b.dataset.lang; try { localStorage.setItem('kitesteticia_lang', L); } catch (e) {} pinta(); });
+try { const g = localStorage.getItem('kitesteticia_lang'); if (T[g]) L = g; } catch (e) {}
+pinta();
+</script>
+</body>
+</html>
