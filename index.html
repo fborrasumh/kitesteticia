@@ -232,6 +232,7 @@ const IC = {
 };
 /* apps del recorrido: [id, ¿urgencia?] — el texto está en T */
 const PASOS = ['anamnesia','valoria','consentia','pautia','urgencia','seguimia'];
+const DISP = {urgencia: 'https://fborrasumh.github.io/urgencia/'};
 const TRANSV = ['dermatoscopia','cumplia'];
 const COMPL = [['esteticia',1],['evidentia'],['doctoralia'],['prismia'],['mentoria'],['manuscriptor'],['posteria'],['esquemia']];
 const T = {
@@ -247,7 +248,7 @@ const T = {
   rutaLead:'Sigue el orden real de la consulta. Pulsa cada paso para ver qué hace la app, qué comprueba por ti y si usa inteligencia artificial.',
   transv:'Además, en cualquier momento:',
   momento:'Momento', hace:'Qué hace', comprueba:'Qué comprueba por ti', usa:'Cómo funciona',
-  sinIA:'Funciona sin IA y sin conexión', conIA:'IA opcional para redactar, con tu clave', estado:'En construcción',
+  sinIA:'Funciona sin IA y sin conexión', conIA:'IA opcional para redactar, con tu clave', estado:'En construcción', disp:'Disponible', abrir:'Abrir',
   apps:{
    anamnesia:{n:'AnamnesIA',cuando:'Llega el paciente',que:'La primera visita guiada: lo que hay que preguntar según el tratamiento que pide, sin olvidar nada.',hace:['Anamnesis estructurada por técnica: fármacos, alergias, embarazo y lactancia, enfermedades, tratamientos previos','Cribado de expectativas y de trastorno dismórfico corporal con cuestionario validado','Resumen listo para pegar en la historia clínica'],comp:['Contraindicaciones de cada técnica con reglas fijas y explicadas','Que no falte ningún dato obligatorio antes de seguir'],ia:0},
    valoria:{n:'ValorIA',cuando:'Exploras y propones',que:'El diagnóstico facial por tercios y por capas convertido en un plan por fases que la paciente entiende.',hace:['Exploración guiada en reposo y con el gesto','Escalas de Fitzpatrick, Glogau y gravedad de arrugas','Plan por fases, de la causa al síntoma, con su presupuesto'],comp:['Que el plan trate el soporte antes que el surco','Las zonas de riesgo que afectan a cada técnica propuesta'],ia:0},
@@ -297,7 +298,7 @@ const T = {
   rutaLead:'Follow the real order of the consultation. Select each step to see what the app does, what it checks for you and whether it uses artificial intelligence.',
   transv:'And at any moment:',
   momento:'Moment', hace:'What it does', comprueba:'What it checks for you', usa:'How it works',
-  sinIA:'Works without AI and offline', conIA:'Optional AI for writing, with your key', estado:'In development',
+  sinIA:'Works without AI and offline', conIA:'Optional AI for writing, with your key', estado:'In development', disp:'Available', abrir:'Open',
   apps:{
    anamnesia:{n:'AnamnesIA',cuando:'The patient arrives',que:'A guided first visit: what to ask for the treatment requested, with nothing left out.',hace:['Structured history by technique: drugs, allergies, pregnancy and breastfeeding, illnesses, previous treatments','Screening for expectations and body dysmorphic disorder with a validated questionnaire','A summary ready to paste into the clinical record'],comp:['Contraindications for each technique with fixed, explained rules','That no mandatory item is missing before moving on'],ia:0},
    valoria:{n:'ValorIA',cuando:'You examine and propose',que:'Facial assessment by thirds and layers turned into a phased plan the patient understands.',hace:['Guided examination at rest and on animation','Fitzpatrick, Glogau and wrinkle severity scales','A phased plan, from cause to symptom, with its estimate'],comp:['That the plan treats support before the fold','The danger zones that affect each proposed technique'],ia:0},
@@ -347,7 +348,7 @@ const T = {
   rutaLead:'Siga a ordem real da consulta. Selecione cada passo para ver o que a app faz, o que verifica por si e se usa inteligência artificial.',
   transv:'E, em qualquer momento:',
   momento:'Momento', hace:'O que faz', comprueba:'O que verifica por si', usa:'Como funciona',
-  sinIA:'Funciona sem IA e sem ligação', conIA:'IA opcional para redigir, com a sua chave', estado:'Em construção',
+  sinIA:'Funciona sem IA e sem ligação', conIA:'IA opcional para redigir, com a sua chave', estado:'Em construção', disp:'Disponível', abrir:'Abrir',
   apps:{
    anamnesia:{n:'AnamnesIA',cuando:'Chega o doente',que:'A primeira consulta guiada: o que perguntar segundo o tratamento pedido, sem esquecer nada.',hace:['Anamnese estruturada por técnica: fármacos, alergias, gravidez e amamentação, doenças, tratamentos prévios','Rastreio de expectativas e de perturbação dismórfica corporal com questionário validado','Resumo pronto a colar no processo clínico'],comp:['Contraindicações de cada técnica com regras fixas e explicadas','Que não falte nenhum dado obrigatório antes de avançar'],ia:0},
    valoria:{n:'ValorIA',cuando:'Examina e propõe',que:'O diagnóstico facial por terços e por camadas convertido num plano por fases que a doente compreende.',hace:['Exame guiado em repouso e com o gesto','Escalas de Fitzpatrick, Glogau e gravidade das rugas','Plano por fases, da causa ao sintoma, com o seu orçamento'],comp:['Que o plano trate o suporte antes do sulco','As zonas de risco que afetam cada técnica proposta'],ia:0},
@@ -386,7 +387,7 @@ const T = {
   pie:'Kit EstéticIA para os estudantes do Mestrado de Formação Permanente em Medicina Estética Integral e Antienvelhecimento (UMH). Licença MIT.'
  }
 };
-let L = 'es', SEL = 'anamnesia';
+let L = 'es', SEL = 'urgencia';
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const $ = id => document.getElementById(id);
 function pinta() {
@@ -395,12 +396,12 @@ function pinta() {
   document.querySelectorAll('[data-t]').forEach(el => { el.textContent = t[el.dataset.t]; });
   document.querySelectorAll('[data-t-aria]').forEach(el => el.setAttribute('aria-label', t[el.dataset.tAria]));
   document.querySelectorAll('.langs button').forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === L));
-  $('pasos').innerHTML = PASOS.map((id, i) => { const a = t.apps[id]; return `<li class="paso${a.urg ? ' urg' : ''}"><button type="button" data-app="${id}" aria-pressed="${SEL === id}" aria-controls="ficha"><span class="num">${i + 1}</span><span class="cuando">${esc(a.cuando)}</span><span class="app">${esc(a.n)}</span></button></li>`; }).join('');
+  $('pasos').innerHTML = PASOS.map((id, i) => { const a = t.apps[id]; return `<li class="paso${a.urg ? ' urg' : ''}"><button type="button" data-app="${id}" aria-pressed="${SEL === id}" aria-controls="ficha"><span class="num">${i + 1}</span>${DISP[id] ? `<span class="chip sin" style="margin:0 0 6px">${esc(t.disp)}</span>` : ''}<span class="cuando">${esc(a.cuando)}</span><span class="app">${esc(a.n)}</span></button></li>`; }).join('');
   $('transv').innerHTML = `<span style="align-self:center;color:var(--gris);font-size:15px">${esc(t.transv)}</span>` + TRANSV.map(id => `<button type="button" data-app="${id}" aria-pressed="${SEL === id}" aria-controls="ficha"><b>${esc(t.apps[id].n)}</b><span>${esc(t.apps[id].cuando)}</span></button>`).join('');
   const a = t.apps[SEL];
   $('ficha').className = 'ficha' + (a.urg ? ' es-urg' : '');
   $('ficha').innerHTML = `<div class="izq"><p class="momento">${esc(t.momento)}: ${esc(a.cuando)}</p><h3 class="nombre">${esc(a.n)}</h3><p class="que">${esc(a.que)}</p>
-      <div><span class="chip ${a.ia ? 'con' : 'sin'}">${a.ia ? IC.con : IC.sin}${esc(a.ia ? t.conIA : t.sinIA)}</span><span class="chip est">${esc(t.estado)}</span></div></div>
+      <div><span class="chip ${a.ia ? 'con' : 'sin'}">${a.ia ? IC.con : IC.sin}${esc(a.ia ? t.conIA : t.sinIA)}</span>${DISP[SEL] ? `<span class="chip sin">${esc(t.disp)}</span>` : `<span class="chip est">${esc(t.estado)}</span>`}</div>${DISP[SEL] ? `<a class="cta" style="margin-top:18px" href="${DISP[SEL]}" target="_blank" rel="noopener">${esc(t.abrir)} ${esc(a.n)}</a>` : ''}</div>
     <div class="der"><div class="bloque"><h3>${esc(t.hace)}</h3><ul>${a.hace.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>
       <div class="bloque"><h3>${esc(t.comprueba)}</h3><ul>${a.comp.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div></div>`;
   $('tres').innerHTML = t.reglas.map(([c, g, p]) => `<div class="regla"><div class="raya" style="background:${c}"></div><p class="grande">${esc(g)}</p><p>${esc(p)}</p></div>`).join('');
